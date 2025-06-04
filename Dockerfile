@@ -1,11 +1,11 @@
 # Use a Nix-enabled base image
 FROM nixos/nix:latest
 
-# Add the nixos-25.05 channel, update, and install webssh from it.
-# The attribute path for webssh within the nixos-25.05 channel is nixos-25.05.webssh
+# Add the nixos-25.05 channel, update it,
+# and then install webssh from that specific channel.
 RUN nix-channel --add https://nixos.org/channels/nixos-25.05 nixos-25.05 && \
     nix-channel --update && \
-    nix-env -iA nixos-25.05.webssh
+    nix-env -f channel:nixos-25.05 -iA webssh
 
 # Expose the port wssh will listen on.
 EXPOSE 8000
