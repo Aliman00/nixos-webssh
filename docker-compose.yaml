@@ -1,0 +1,11 @@
+services:
+  webssh:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000" # Map host port 8000 to container port 8000.
+                    # You can change the host port (left side).
+    restart: unless-stopped
+    # If wssh needs specific command-line arguments, you can override the CMD
+    # from the Dockerfile here using 'command:', or pass environment variables.
